@@ -1,0 +1,63 @@
+
+<div class="col-md-6 col-md-offset-4">
+    <h1>Add Gadgets Form</h1>
+    <div class="well">
+      <form action=""[formGroup]="myForm" (ngSubmit)="onSignup(myForm)">
+    <label  for="">Name:</label><input #name formControlName="name"class="form-control"type="text" #name name=""id="name" placeholder="Product name"><br>
+    <div *ngIf="myForm.controls['name'].hasError('required')&& myForm.controls['name'].touched" class="alert alert-danger">
+  
+    Product name is Required
+    </div>
+    
+    <label for="">Type:</label><input #type formControlName="type" placeholder="Product Type" class="form-control"type="text" name="" id="type"><br>
+    <div *ngIf="myForm.controls['type'].hasError('required')&& myForm.controls['type'].touched" class="alert alert-danger">
+  Type Required
+  
+      </div>
+      
+      <label for="">Colour:</label><input #colour placeholder="Product colour" formControlName="colour"class="form-control"  name="" id="colour"><br>
+      <div *ngIf="myForm.controls['colour'].hasError('required')&& myForm.controls['colour'].touched" class="alert alert-danger">
+      Colour  required
+    
+        </div>
+        <label for="">Cost:</label><input type="number" min="1" onkeypress="return event.charCode >= 48" placeholder="Product cost" formControlName="cost"class="form-control" #cost name="" id="cost"><br>
+      <div *ngIf="myForm.controls['cost'].hasError('required')&& myForm.controls['cost'].touched" class="alert alert-danger">
+      cost is  required
+    
+        </div>
+        <label for="">Poster:</label><input placeholder="Image Url" formControlName="poster"class="form-control" #poster name="" id="poster"><br>
+      <div *ngIf="myForm.controls['poster'].hasError('required')&& myForm.controls['poster'].touched" class="alert alert-danger">
+      Image Url is  required
+    
+        </div>
+        <label for="">Desription:</label><input   placeholder="About Product" formControlName="description"class="form-control" #description name="" id="desription"><br>
+      <div *ngIf="myForm.controls['description'].hasError('required')&& myForm.controls['description'].touched" class="alert alert-danger">
+      Description  required
+    
+        </div>
+        
+        
+  </form>  
+  </div>
+     <button type="submit" [disabled]="!myForm.valid" (click)="addGadgetToServices(name.value,type.value,colour.value,cost.value,poster.value,description.value)"class="btn btn-primary">Add</button>
+</div>
+<br>
+<div class="col-md-10">
+<table border="1">
+    <thead>
+        <tr>
+            <th>Name</th> <th>Type</th> <th>Colour</th> <th>Cost</th> <th>Poster</th> <th style="width: 33%;">Descrition</th> <th>Product Delete</th><th>Product Edit</th>
+
+        </tr>
+        
+    </thead>
+    <tbody>
+        <tr *ngFor="let gadget of gadgets">
+            <td>{{gadget.name}}</td> <td>{{gadget.type}}</td><td>{{gadget.colour}}</td> <td>{{gadget.cost}}</td>
+            <td><img src="{{gadget.poster}}" height="100" width="100"  alt="">  </td> <td> {{gadget.description}}</td>
+            <td  style="text-align: center;"><button class="btn btn-danger"  (click)="deleteGadgetFromService(gadget)">Delete</button></td>
+            <td style="text-align: center;"><button class="btn btn-primary" (click)="goToEditComponent(gadget._id)">Edit</button></td>
+        </tr>
+    </tbody>
+</table>
+</div>

@@ -1,0 +1,34 @@
+
+<div class="col-md-6 col-md-offset-4">
+    <h1>Registration Form</h1>
+    <div class="well">
+      <form action=""[formGroup]="myForm" (ngSubmit)="onSignup(myForm)">
+    <label  for="">User Name:</label><input #name formControlName="name"class="form-control"type="text" #name name=""id="name"><br>
+    <div *ngIf="myForm.controls['name'].hasError('required')&& myForm.controls['name'].touched" class="alert alert-danger">
+  
+    User name is Required
+    </div>
+    
+    <label for="">Email:</label><input #emailid formControlName="email" class="form-control"type="text" name="" id="email"><br>
+    <div *ngIf="myForm.controls['email'].hasError('required')&& myForm.controls['email'].touched" class="alert alert-danger">
+  Email Required
+  
+      </div>
+      <div *ngIf="myForm.controls['email'].hasError('pattern')" class="alert alert-danger">
+          A form with an email field that that must be in the following order: characters@characters.domain (characters followed by an @ sign, followed by more characters, and then a ".". After the "." sign, add at least 2 letters from a to z:
+      </div>
+      <label for="">Pass Word:</label><input #pass formControlName="password"class="form-control" type="password"#password name="" id="password"><br>
+      <div *ngIf="myForm.controls['password'].hasError('required')&& myForm.controls['password'].touched" class="alert alert-danger">
+      password required
+    
+        </div>
+        <div  class="alert alert-danger"*ngIf="myForm.controls['password'].hasError('minlength')&&myForm.controls['password'].touched">
+     password should be min 8 chars
+        </div>
+        <div  class="alert alert-danger"*ngIf="myForm.controls['password'].hasError('maxlength')&&myForm.controls['password'].touched">
+            password should be max 15 chars
+               </div>
+  </form>  
+  </div>
+     <button  [disabled]="!myForm.valid" (click)="addUserToServices(name.value,emailid.value,pass.value)"class="btn btn-primary">Sign Up</button>
+  </div>

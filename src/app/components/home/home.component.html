@@ -1,0 +1,17 @@
+<p>home works!</p>
+<p>Hi {{users.name}}! Welcome to Music Store</p>
+<table border="1">
+    <thead>
+        <tr>
+            <th>Name</th> <th>Type</th> <th>Colour</th> <th>COst</th> <th>Poster</th> <th>Descrition</th>
+
+        </tr>
+        
+    </thead>
+    <tbody>
+        <tr *ngFor="let gadget of gadgets">
+            <td>{{gadget.name}}</td> <td>{{gadget.type}}</td><td>{{gadget.colour}}</td> <td>{{gadget.cost}}</td>
+            <td><img src="{{gadget.poster}}" height="100" width="100"  alt="">  </td> <td> {{gadget.description}}</td>
+        </tr>
+    </tbody>
+</table>
